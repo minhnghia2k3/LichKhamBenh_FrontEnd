@@ -11,6 +11,7 @@ import './Login.scss';
 import { FormattedMessage } from 'react-intl';
 
 import adminService from '../services/adminService';
+import { userService } from '../services';
 
 class Login extends Component {
     constructor(props) {
