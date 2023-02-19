@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { emitter } from "../../utils/emitter";
 
 class ModalUser extends Component {
 
@@ -15,9 +16,21 @@ class ModalUser extends Component {
       lastName: '',
       address: '',
     }
+    this.listenToEmitter();
   }
-
+  listenToEmitter() {
+    emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
+      this.setState({
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        address: '',
+      })
+    })
+  }//fire event: emit; listen event: on
   componentDidMount() {
+
   }
   toggle = () => {
     this.props.toggleFromParent();
@@ -31,13 +44,11 @@ class ModalUser extends Component {
     //   console.log("Check bad state: ", this.state)
     // })
     //good code
-    let copyState = { ...this.state };
+    let copyState = { ...this.state }; //...
     copyState[id] = event.target.value;
     this.setState({
       ...copyState
     }, () => {
-      //console.log("check good state: ", this.state)
-
     })
   }
 
@@ -46,7 +57,6 @@ class ModalUser extends Component {
     let arrayInput = ['email', 'password', 'firstName', 'lastName', 'address']
     for (let i = 0; i < arrayInput.length; i++) {
       if (!this.state[arrayInput[i]]) {
-        console.log(this.state[arrayInput[i]])
         isValid = false;
         alert('Missing parameter: ' + arrayInput[i]);
         break;
