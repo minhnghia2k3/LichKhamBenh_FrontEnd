@@ -55,3 +55,106 @@
         }
     }
 }
+
+.home-header-banner {
+    background: url("../../assets/images/background-bookingcare.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 485px;
+    display: flex;
+    flex-direction: column;
+
+
+    .content-up {
+        border: 1px solid red;
+        height: 50%;
+        padding-top: 15px;
+
+        .title-1 {
+            text-align: center;
+            font-size: 30px;
+            color: #fff;
+            text-shadow: 1px 1px 1px #333;
+            margin-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        .title-2 {
+            color: #fff;
+            text-align: center;
+            font-size: 30px;
+            text-shadow: 1px 1px 1px #333;
+            margin-bottom: 15px;
+        }
+
+        .search {
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            align-items: center;
+            padding: 10px;
+            /* width: 400px; */
+            border-radius: 25px;
+            background: #F7D802;
+
+            i {
+                margin: 0 5px;
+            }
+
+            input {
+                height: 30px;
+                width: 360px;
+                background: transparent;
+                border: none;
+                outline: none;
+
+            }
+        }
+    }
+
+}
+
+.content-down {
+    border: 1px solid green;
+    height: 50%;
+
+    .options {
+        text-align: center;
+        display: flex;
+        gap: 50px;
+        justify-content: center;
+
+
+        .options-child {
+            border: 1px solid red;
+            width: 100px;
+
+            .icon-child {
+                background: white;
+                width: fit-content;
+                padding: 10px;
+                border-radius: 50%;
+                height: 40px;
+                width: 40px;
+                margin: 0 auto;
+
+                i {
+                    font-size: 20px;
+                    color: #49bce2;
+                }
+            }
+
+            .text-child {
+                font-size: 17px;
+                font-weight: 500;
+                cursor: pointer;
+
+                &:hover {
+                    color: #49bce2;
+                }
+            }
+        }
+    }
+}
