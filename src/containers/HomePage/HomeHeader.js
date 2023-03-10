@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import "./HomeHeader.scss"
 import logo from '../../assets/images/logo-bookingcare.svg';
 import { FormattedMessage } from 'react-intl';
-
+import { LANGUAGES } from "../../utils/constant";
+import { changeLanguageApp } from '../../store/actions/appActions';
 class HomeHeader extends Component {
-
+    changeLanguage = (language) => {
+        //fire redux event: action
+        this.props.changeLanguageAppRedux(language)
+    }
     render() {
-        console.log('Check props: ', this.props)
+        let language = this.props.language
+        console.log('check language: ', language)
         return (
             <React.Fragment>
                 <div className="home-header-container">
@@ -42,8 +47,8 @@ class HomeHeader extends Component {
                                 <i className="fas fa-question-circle"></i>
                                 <FormattedMessage id="home-header.support" />
                             </div>
-                            <div className="lang-vi">VN</div>
-                            <div className="lang-en">EN</div>
+                            <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span></div>
+                            <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
                         </div>
                     </div>
                 </div>
@@ -90,6 +95,7 @@ class HomeHeader extends Component {
 
 }
 
+// map State from Redux to React
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
@@ -98,8 +104,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
+    // redux's action: fire event
     return {
+        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader); // Connect Redux to React
